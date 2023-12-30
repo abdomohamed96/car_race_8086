@@ -13,7 +13,7 @@ GAMEOVER PROC FAR
               mov  ah,0
               mov  al,3h                         ; or 4 or 6
               int  10h
-
+            push bx
               MOV CX,160
               MOV DX,100
               mov ah,2
@@ -31,8 +31,10 @@ GAMEOVER PROC FAR
               lea dx,no_one_win
               op1:
               
-              int 21h 
-              hlt
+              int 21h
+              pop bx 
+            mov cx,0ffffh
+              sifood:loop sifood
      ret
 GAMEOVER ENDP
 

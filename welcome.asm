@@ -41,10 +41,14 @@ Message5 db 'To end  the program Press ESC$'
     mov dl,00h
     int 10h
 ;------------- waiting for input -------------
-    mov ah,0ah
+    reado2:mov ah,0ah
     mov dx,offset player1
     int 21h 
 ;-------------------------------------------
+    mov si,offset player1
+    mov ax,[si+2]
+    cmp al,'$'
+    jz reado2
     mov ah,2
     mov dh,07
     mov dl,00h
@@ -81,10 +85,14 @@ Message5 db 'To end  the program Press ESC$'
     mov dl,00h
     int 10h
 ;------------- waiting for input -------------
-    mov ah,0ah
+    reado:mov ah,0ah
     mov dx,offset player2
     int 21h 
 ;-------------------------------------------
+    mov si,offset player2
+    mov ax,[si+2]
+    cmp al,'$'
+    jz reado
     mov ah,2
     mov dh,7
     mov dl,00h

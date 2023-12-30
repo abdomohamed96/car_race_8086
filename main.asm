@@ -109,8 +109,8 @@ PUBLIC maketrap2 ,VALID_UP,OPOT,game_over,timer_minute,timer_second,init_posxs1 
     maketrap2             db                      0
     valid_up              dw                      1
     OPOT                  db                      0
-    player1               db  15d,? ,15d dup('$'),'$'
-    player2               db   15d,? ,15d dup('$'),'$'
+    player1               db  15d,?,15d dup('$'),'$'
+    player2               db   15d,?,15d dup('$'),'$'
     timer                 db  '01:50','$'    
     powerup               db   'Run - Slow - Make - Avoid', '$'    
     score1                db  12
@@ -154,7 +154,7 @@ main proc far
                 int 10h
                 call welcome_screen2
               
-                call second_screen
+               maino: call second_screen
                 ;change to graphics mode
                 cmp mode,0
                 jz exit
@@ -179,6 +179,9 @@ main proc far
         
               call DRAWCAR
               Call GAMEOVER
+              mov cx,0ffffh
+              sifo:loop sifo
+              jmp maino
            exit:   
             mov ax,0003h
             int 10h

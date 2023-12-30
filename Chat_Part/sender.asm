@@ -59,8 +59,8 @@ AGAIN:
                 mov dh,24     ; lower right Y
                 mov dl,0      ; lower right X 
                 int 10h           
-                mov lowerx,0
-               mov lowery,13
+                mov lowerx,-1
+
        recieve1: mov dx , 3FDH		; Line Status Register
 		in al , dx 
   		AND al , 1
