@@ -124,20 +124,24 @@ second_screen proc far
     mov ah,9
     mov dx,offset Message5
     int 21h
-    mov ah,00
-    la:int 16h
-    jz la
-    cmp ah,1
-    mov mode,0
-    jz retire
-    cmp ah,59
-    mov mode,1
-    jz retire
-    cmp ah,60
-    mov mode,2
-    retire:
-    mov ah,01
+   la: mov ah,01
     int 16h
+     jz la
+    mov ah,00
+    int 16h
+    cmp ah,1
+    jz mode1
+    cmp ah,59
+    jz mode2
+    cmp ah,60
+    jz mode3
+    jmp la
+    mode1:
+    mov mode,0
+    ret
+    mode2:mov mode,1
+    ret
+    mode3:mov mode,2
     ret
 second_screen endp  
 end

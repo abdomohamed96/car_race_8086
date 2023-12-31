@@ -67,16 +67,18 @@ main proc far
                 inc lowery
                 mov lowerx,0
    print:       
-                cmp lowery,25
-                jne prints
-                mov ah,6              ; function 6
-                mov al,1              ; scroll by 1 line
-                mov bh,7              ; normal video attribute
-                mov ch,0              ; upper left Y
-                mov cl,0              ; upper left X
-                mov dh,24             ; lower right Y
-                mov dl,39             ; lower right X
+                cmp lowery,25d
+                jle prints
+                mov ah,6d              ; function 6
+                mov al,1d              ; scroll by 1 line
+                mov bh,7d              ; normal video attribute
+                mov ch,0d              ; upper left Y
+                mov cl,0d              ; upper left X
+                mov dh,24d             ; lower right Y
+                mov dl,39d             ; lower right X
                 int 10h
+                dec lowery
+                mov lowerx,0
    prints:      
                 mov ah,02h
                 mov dl,lowerx
@@ -108,16 +110,18 @@ main proc far
    enter:       inc uppery
                 mov upperx,41
    print1:      
-                  cmp uppery,25
-                  jne prints1
-                  mov ah,6              ; function 6
-                  mov al,1              ; scroll by 1 line
-                  mov bh,7              ; normal video attribute
-                  mov ch,0              ; upper left Y
-                  mov cl,41              ; upper left X
-                  mov dh,24             ; lower right Y
-                  mov dl,79             ; lower right X
+                  cmp uppery,25d
+                  jle prints1
+                  mov ah,6d              ; function 6
+                  mov al,1d              ; scroll by 1 line
+                  mov bh,7d              ; normal video attribute
+                  mov ch,0d             ; upper left Y
+                  mov cl,41d              ; upper left X
+                  mov dh,24d             ; lower right Y
+                  mov dl,79d             ; lower right X
                   int 10h
+                  dec uppery
+                mov upperx,41
 prints1:
                 mov ah,02h
                 mov dl,upperx

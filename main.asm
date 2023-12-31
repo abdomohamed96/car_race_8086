@@ -35,7 +35,7 @@ public temp_posxs2, temp_posxe2, temp_posys2, temp_posye2, up_pressed_or_not    
 public w_pressed_or_not  , d_pressed_or_not  , s_pressed_or_not, a_pressed_or_not, color   , current_flag, msg     , cur_row , cur_col 
 public new_row , new_col , rand_dir   , rand_dist  , valid_left , valid_right, valid_down , LAST_COL   , LAST_ROW   , photoFilename   
 public  photoFilehandle , FIRST_COL  , FIRST_ROW  , photoData  , is_col  , CARFLAG1   , CARFLAG2   , POWER1  , POWER2  , slow1   , slow2   
-public is_powered1, is_powered2, seed    , dist    , skipobstacle2   , skipobstacle1   , canskipobstacle2, canskipobstacle1, maketrap1  
+public is_powered1, is_powered2, seed    , dist    , skipobstacle2   , skipobstacle1   , canskipobstacle2, canskipobstacle1, maketrap1,winner
 PUBLIC maketrap2 ,VALID_UP,OPOT,game_over,timer_minute,timer_second,init_posxs1  ,init_posxe1  ,init_posys1  ,init_posye1   ,init_posxs2  ,init_posxe2  ,init_posys2  ,init_posye2 ,first_time,mode
 
 
@@ -142,6 +142,7 @@ PUBLIC maketrap2 ,VALID_UP,OPOT,game_over,timer_minute,timer_second,init_posxs1 
     init_posye2           dw          15
     first_time   db ?
     mode         db ?
+    winner       db ?
 .CODE    
 main proc far
               mov  ax,@data
@@ -154,7 +155,11 @@ main proc far
                 int 10h
                 call welcome_screen2
               
-               maino: call second_screen
+             maino:
+             mov ah,0
+             mov al,3
+             int 10h
+                call second_screen
                 ;change to graphics mode
                 cmp mode,0
                 jz exit
@@ -165,7 +170,9 @@ main proc far
               ;;;;;;;;;;;;;;;;;;;;;chatting phase 2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-            game:  mov  ah,0
+            game: 
+            mov winner,0
+             mov  ah,0
               mov  al,13h                         ; or 4 or 6
               int  10h
               CALL OpenFile
@@ -179,6 +186,7 @@ main proc far
         
               call DRAWCAR
               Call GAMEOVER
+              
               mov cx,0ffffh
               sifo:loop sifo
               jmp maino

@@ -28,6 +28,7 @@ GAMEOVER PROC FAR
               lea dx, player_2win
               cmp WINNER,2
               je op1
+              
               lea dx,no_one_win
               op1:
               
