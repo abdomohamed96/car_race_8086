@@ -42,7 +42,8 @@ extrn    photoFilename   :byte
 extrn    remaining_time  :byte 
 ;extrn   ; finallinename   :byte  'final_line.bin', 0
 extrn    photoFilehandle :word  
-;extrn    ;finallinehandle :word  
+;extrn    ;finallinehandle :word  e
+; extrn winner:byte
 extrn    FIRST_COL       :word  
 extrn    FIRST_ROW       :word  
 extrn    photoData       :byte  

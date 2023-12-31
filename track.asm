@@ -214,6 +214,12 @@ CloseFile Proc far
               RET
 CloseFile ENDP
 dfs Proc far 
+mov valid_down,1
+mov valid_left,1
+mov valid_right,1
+mov valid_up,1
+
+
     Again:    
               mov  ax, valid_left
               or   ax, valid_right

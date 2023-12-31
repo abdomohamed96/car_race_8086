@@ -31,7 +31,7 @@ GAMEOVER PROC FAR
               
               lea dx,no_one_win
               op1:
-              
+              mov winner,0
               int 21h
               pop bx 
             mov cx,0ffffh
