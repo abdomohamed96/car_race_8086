@@ -69,6 +69,8 @@ public dfs, readData, openFile, closeFile, draw
     safty_width     equ 20d
     safty_width_down equ 50d
      Last_dir         db   ?
+    roadrows          dw 15 dup(?)
+    roadcols          dw 15 dup(?)
 .code
 
    

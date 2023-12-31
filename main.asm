@@ -184,12 +184,20 @@ main proc far
               
               call dfs
               ;
+            mov current_flag,0
+            mov is_powered1,0
+            mov is_powered2,0
+            mov power1_val,0
+            mov power2_val,0
               call statusbar
-        
               call DRAWCAR
               Call GAMEOVER
               mov cx,0ffffh
-              sifo:loop sifo
+              sifo: mov dx,04ah
+             sifo1 :dec dx
+              cmp dx,0
+              jne sifo1
+              loop sifo
               jmp maino
            exit:   
             mov ax,0003h

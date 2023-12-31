@@ -721,6 +721,10 @@ cmp al,26h ;L key
     jnz h_not_released
     jmp return_press
     h_not_released:
+    cmp al,62
+    jnz return_press
+    mov game_over,1
+    mov winner,3
 return_press:
 call statusbar
 ret
@@ -987,6 +991,31 @@ CHECK_COLOR2 PROC far
     RET
     CHECK_COLOR2 ENDP
 DRAWCAR proc FAR
+mov    up_pressed_or_not    ,0
+mov    down_pressed_or_not  ,0
+mov    right_pressed_or_not ,0
+mov    left_pressed_or_not  ,0
+mov    w_pressed_or_not     ,0
+mov    d_pressed_or_not     ,0
+mov    s_pressed_or_not     ,0
+mov    a_pressed_or_not     ,0
+mov current_flag,0
+mov is_powered1,0
+mov is_powered2,0
+mov power1_val,0
+mov power2_val,0
+mov    power1          ,0
+mov    POWER2          ,0h
+mov    slow1           , 0
+mov    slow2           , 0
+mov    is_powered1     , 0
+mov    is_powered2     , 0
+mov    skipobstacle2   , 0
+mov    skipobstacle1   , 0
+mov    canskipobstacle2, 0
+mov    canskipobstacle1, 0
+mov    maketrap1       , 0
+mov    maketrap2       , 0
 mov ax,init_posxe1
 mov posxe1,ax
 mov ax,init_posxs1
